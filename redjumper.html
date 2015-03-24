@@ -291,17 +291,18 @@
 
 				}
 
-				material = new THREE.MeshBasicMaterial( { vertexColors: THREE.VertexColors } );
+				material = new THREE.MeshBasicMaterial( { vertexColors: THREE.VertexColors, transparent: true, opacity: 0.9} );
 
 				mesh = new THREE.Mesh( geometry, material );
 				scene.add( mesh );
 
 				//circle
-				geometry = new THREE.SphereGeometry(450, 15.75, 3.6);
-				material = new THREE.MeshPhongMaterial({shading: THREE.FlatShading, color: 0xdcdcdc, ambient: 0xebcfcf, emissive: 0x645c5c, specular: 0x6e6e6e, shininess: 46.08, transparent: true, opacity: 0.9});
+				geometry = new THREE.SphereGeometry(450, 15.75, 3);
+				material = new THREE.MeshPhongMaterial({shading: THREE.FlatShading, color: 0xdcdcdc, ambient: 0xebcfcf, emissive: 0x645c5c, specular: 0x6e6e6e, shininess: 46.08, transparent: true, opacity: 0.8});
 				mesh = new THREE.Mesh(geometry, material);
 				mesh.castShadow = true;
 				mesh.scale.y = 2;
+				mesh.position.y = 100;
 				scene.add(mesh);
 
 				//diamond
@@ -312,14 +313,27 @@
 				mesh1.position.y = -250;
 				scene.add(mesh1);
 
-				var sound1 = new THREE.Audio( listener );
-				sound1.load( 'sounds/take u down there.mp3' );
-				sound1.setRefDistance( 500 );
-				mesh1.add( sound1 );
-
 				//light
 				var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
 				directionalLight.position.set( 0, -400, 0 );
+				scene.add( directionalLight );
+
+
+				//circle
+				geometry = new THREE.SphereGeometry(300, 10.75, 3);
+				material = new THREE.MeshPhongMaterial({shading: THREE.FlatShading, color: 0x5cdcdc, ambient: 0xebcfcf, emissive: 0x645c5c, specular: 0x6e6e6e, shininess: 46.08, transparent: true, opacity: 0.9});
+				mesh = new THREE.Mesh(geometry, material);
+				mesh.castShadow = true;
+				mesh.scale.y = 1;
+				mesh.position.x = 600;
+				mesh.position.z = 300;
+				scene.add(mesh);
+
+				//var sound1 = new THREE.Audio( listener ); sound1.load( 'sounds/take u down there.mp3' ); sound1.setRefDistance( 500 ); mesh1.add( sound1 );
+
+				//light
+				var directionalLight = new THREE.DirectionalLight( 0x33ff44, 0.5 );
+				directionalLight.position.set( 600, 100, 300 );
 				scene.add( directionalLight );
 
 				//walls
